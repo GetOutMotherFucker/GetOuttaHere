@@ -19,7 +19,7 @@ namespace GetOuttaHere
 
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, UriTemplate = "signals/")]
-        IList<Signal> GetCustomers();
+        IList<Signal> GetSignals();
 
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json,

@@ -16,17 +16,17 @@ namespace GetOuttaHere
 
         public string GetData()
         {
-            return "Signal: Beep beep bitch";
+            return "Beep beep bitch";
         }
 
         WebOperationContext webContext = WebOperationContext.Current;
         public static int nextId = 0;
         private static List<Signal> signalList = new List<Signal>()
         {    
-            new Signal(01,33)
+            new Signal(01,33),new Signal(02,33)
         };
 
-        public IList<Signal> GetCustomers()
+        public IList<Signal> GetSignals()
         {
             return signalList;
         }
