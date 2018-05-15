@@ -13,6 +13,7 @@ namespace GetOuttaHere
     // NOTE: In order to launch WCF Test Client for testing this service, please select SignalService1.svc or SignalService1.svc.cs at the Solution Explorer and start debugging.
     public class SignalService1 : IService1
     {
+        private const string _connectionString = "Server=tcp:hassan-server.database.windows.net,1433;Initial Catalog=SchoolDB;Persist Security Info=False;User ID=hassanrh;Password=Hemmeligt2303;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
         public string GetData()
         {
