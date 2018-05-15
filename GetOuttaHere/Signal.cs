@@ -7,7 +7,7 @@ namespace GetOuttaHere
     public class Signal
     {
         private int _ID;
-        private int _tid;
+        private string _tid;
         private DateTime _datetime;
         private int _sensorNumber;
 
@@ -35,7 +35,7 @@ namespace GetOuttaHere
         }
 
         [DataMember]
-        public int Tid
+        public string Tid
         {
             get { return _tid; }
             set { _tid = value; }
@@ -46,6 +46,5 @@ namespace GetOuttaHere
             get { return _ID; }
             set { _ID = value; }
         }
-
     }
 }

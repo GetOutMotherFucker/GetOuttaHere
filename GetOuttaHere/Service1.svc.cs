@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Runtime.Serialization;
@@ -15,9 +16,54 @@ namespace GetOuttaHere
     {
         private const string _connectionString = "Server=tcp:hassan-server.database.windows.net,1433;Initial Catalog=SchoolDB;Persist Security Info=False;User ID=hassanrh;Password=Hemmeligt2303;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
-        public string GetData()
+        public List<Signal> GetData()
         {
-            return "Beep beep bitch";
+            SqlConnection connection = new SqlConnection(_connectionString); //laver en ny sql connection, som er en connectionstring 
+            connection.Open(); // her åbner vi vores connection
+
+            SqlCommand getAllelements = new SqlCommand("SELECT * FROM SensorData", connection);
+            SqlDataReader reader = getAllelements.ExecuteReader();
+
+            List<Signal> signal = new List<Signal>();
+            while (reader.Read())
+            {
+                Signal temptsSignal = new Signal();
+
+                temptsSignal.ID = reader.GetInt32(0);
+                temptsSignal.Tid = reader.GetString(1);
+                temptsSignal.SensorNumber = reader.GetInt32(2);
+
+                signalList.Add(temptsSignal);
+            }
+
+            connection.Close();
+            return signalList;
+        }
+        public Signal GetSpecificSignal(string id)
+        {
+            SqlConnection connection = new SqlConnection(_connectionString);
+            connection.Open();
+
+            SqlCommand getAllElements = new SqlCommand($"SELECT * FROM SensorData WHERE id = {id}", connection);
+            SqlDataReader reader = getAllElements.ExecuteReader();
+
+            Signal temptsSignal = new Signal();
+            List<Signal> ObjList = new List<Signal>();
+
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    temptsSignal.ID = reader.GetInt32(0);
+                    temptsSignal.Tid = reader.GetString(1);
+                    temptsSignal.SensorNumber = reader.GetInt32(2);
+
+                    signalList.Add(temptsSignal);
+                }
+            }
+
+            connection.Close();
+            return temptsSignal;
         }
 
         WebOperationContext webContext = WebOperationContext.Current;
