@@ -14,16 +14,22 @@ namespace GetOuttaHere
     {
 
         [OperationContract]
-        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, UriTemplate = "SensorData")]
+        [WebInvoke(Method = "GET", 
+            ResponseFormat = WebMessageFormat.Json, 
+            UriTemplate = "SensorData/")]
        List<Signal> GetData();
 
         [OperationContract]
-        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, UriTemplate = "signals/{id}")]
+        [WebInvoke(Method = "GET", 
+            ResponseFormat = WebMessageFormat.Json, 
+            UriTemplate = "signals/{id}")]
         Signal GetSpecificSignal(string id);
 
         [OperationContract]
-        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json,
-            BodyStyle = WebMessageBodyStyle.Bare, UriTemplate = "signal/{id}")]
+        [WebInvoke(Method = "GET", 
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Bare, 
+            UriTemplate = "signal/{id}")]
         Signal GetSignal(string id);
 
 
@@ -31,14 +37,16 @@ namespace GetOuttaHere
         [WebInvoke(Method = "DELETE",
             RequestFormat = WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json,
-            BodyStyle = WebMessageBodyStyle.Bare, UriTemplate = "signals/{id}")]
+            BodyStyle = WebMessageBodyStyle.Bare, 
+            UriTemplate = "signals/{id}")]
         Signal DeleteSignal(string id);
 
         [OperationContract]
         [WebInvoke(Method = "POST",
             RequestFormat = WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json,
-            BodyStyle = WebMessageBodyStyle.Bare, UriTemplate = "signals/")]
+            BodyStyle = WebMessageBodyStyle.Bare, 
+            UriTemplate = "signals/")]
         Signal InsertCustomer(Signal signal);
     }
 }
