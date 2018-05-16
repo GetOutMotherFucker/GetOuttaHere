@@ -20,56 +20,52 @@ namespace GetOuttaHere
        
         public List<Signal> GetData()
         {
-            //SqlConnection connection = new SqlConnection(_connectionString); //laver en ny sql connection, som er en connectionstring 
-            //connection.Open(); // her åbner vi vores connection
+            SqlConnection connection = new SqlConnection(_connectionString); //laver en ny sql connection, som er en connectionstring 
+            connection.Open(); // her åbner vi vores connection
 
-            //SqlCommand getAllelements = new SqlCommand("SELECT * FROM SensorData", connection);
-            //SqlDataReader reader = getAllelements.ExecuteReader();
-            //List<Signal> signalList = new List<Signal>();
+            SqlCommand getAllelements = new SqlCommand("SELECT * FROM SensorData", connection);
+            SqlDataReader reader = getAllelements.ExecuteReader();
+            List<Signal> signalList = new List<Signal>();
 
-            //while (reader.Read())
-            //{
-            //    Signal temptsSignal = new Signal();
+            while (reader.Read())
+            {
+                Signal temptsSignal = new Signal();
 
-            //    temptsSignal.ID = reader.GetInt32(0);
-            //    temptsSignal.Tid = reader.GetString(1);
-            //    temptsSignal.SensorNumber = reader.GetInt32(2);
+                temptsSignal.ID = reader.GetInt32(0);
+                temptsSignal.Tid = reader.GetString(1);
+                temptsSignal.SensorNumber = reader.GetInt32(2);
 
-            //    signalList.Add(temptsSignal);
-            //}
+                signalList.Add(temptsSignal);
+            }
 
-            //connection.Close();
-            //return signalList;
-            var x = new List<Signal>();
-            x.Add(new Signal());
-            return x;
+            connection.Close();
+            return signalList;
         }
         public Signal GetSpecificSignal(string id)
         {
-            //SqlConnection connection = new SqlConnection(_connectionString);
-            //connection.Open();
+            SqlConnection connection = new SqlConnection(_connectionString);
+            connection.Open();
 
-            //SqlCommand getAllElements = new SqlCommand($"SELECT * FROM SensorData WHERE id = {id}", connection);
-            //SqlDataReader reader = getAllElements.ExecuteReader();
+            SqlCommand getAllElements = new SqlCommand($"SELECT * FROM SensorData WHERE id = {id}", connection);
+            SqlDataReader reader = getAllElements.ExecuteReader();
 
-            //Signal temptsSignal = new Signal();
-            //List<Signal> ObjList = new List<Signal>();
+            Signal temptsSignal = new Signal();
+            List<Signal> ObjList = new List<Signal>();
 
-            //if (reader.HasRows)
-            //{
-            //    while (reader.Read())
-            //    {
-            //        temptsSignal.ID = reader.GetInt32(0);
-            //        temptsSignal.Tid = reader.GetString(1);
-            //        temptsSignal.SensorNumber = reader.GetInt32(2);
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    temptsSignal.ID = reader.GetInt32(0);
+                    temptsSignal.Tid = reader.GetString(1);
+                    temptsSignal.SensorNumber = reader.GetInt32(2);
 
-            //        signalList.Add(temptsSignal);
-            //    }
-            //}
+                    signalList.Add(temptsSignal);
+                }
+            }
 
-            //connection.Close();
-            //return temptsSignal;
-            return new Signal();
+            connection.Close();
+            return temptsSignal;
         }
 
         WebOperationContext webContext = WebOperationContext.Current;

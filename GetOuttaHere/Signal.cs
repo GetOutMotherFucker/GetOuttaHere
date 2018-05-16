@@ -7,7 +7,6 @@ namespace GetOuttaHere
     public class Signal
     {
       
-        
         public int SensorNumber { get; set; }
         
         public string Tid { get; set; }
